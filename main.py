@@ -84,6 +84,16 @@ for i in range(1,nt):
         it+=1
         final_densite[it][:]=densite[i][:]
 
+# Calcul de la transmission et réflexion
+barrier_end = int(0.9 / dx)  # position approximative après la barrière
+
+transmission = np.sum(final_densite[-1, barrier_end:]) * dx
+reflection = np.sum(final_densite[-1, :barrier_end]) * dx
+
+print(f"Transmission finale: {transmission:.3f}")
+print(f"Réflexion finale: {reflection:.3f}")
+print(f"Somme totale (doit être ~1): {transmission + reflection:.3f}")
+
 # it=0
 # for i in range(1, nt):
 #     if i % 2 != 0:
